@@ -1,0 +1,9 @@
+take initial sensor readings, specifically ambient light percentage
+
+LOOP
+check sensor inputs left, right and front
+
+if we hit the button, go forward
+else if ambient light of the left controller goes aboe like 27 or so, turn left
+else if my hand is in front of the ultrasonic sensor, turn right
+else wait
