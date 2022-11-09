@@ -16,15 +16,15 @@ go_right_controller = UltrasonicSensor(Port.S3) #Ultrasonic goes on the left sid
 go_left_controller = LightSensor(Port.S1)				#Light sensor goes on the right side and indicates movement to left is needed
 
 # Variables and Constants
-robot_drive.settings(100, 25, 30, 5) #speed mm/s, acceleration mm/s^2, turn rate deg/s, turn acceleration deg/s^2
+robot_drive.settings(900, 200, 80, 50) #speed mm/s, acceleration mm/s^2, turn rate deg/s, turn acceleration deg/s^2
 
 # Main Code
-for count in range(25):
+for count in range(50):
     if straight_controller.pressed() == True: #0-1 true-false
-        robot_drive.straight(100) #go forward 10 cm
-    elif go_left_controller.ambient() < 20: #35 is ambient and hitting something
-        robot_drive.turn(45) #left 45 degrees
-    elif go_right_controller.distance() < 40: #0-175ish, 255 is either really far away or inside of it.
-        robot_drive.turn(45) #right 45
+        robot_drive.straight(300) #go forward 10 cm
+    elif go_left_controller.ambient() < 45: #35 is ambient and hitting something
+        robot_drive.turn(-70) #left 45 degrees
+    elif go_right_controller.distance() < 400: #0-175ish, 255 is either really far away or inside of it.
+        robot_drive.turn(70) #right 45
     else:
-        wait(1000) #wait 1 second
+        wait(2500) #wait 1 second
