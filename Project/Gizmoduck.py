@@ -2,6 +2,8 @@
 import Navigation
 import DuckEyes
 import DuckFlippers
+import DuckDrive
+
 '''
 this file holds data for the overall operation of the robot, calls functions in Navigation and in Grabbing to get path info.
 should there be a separate script to deal with actually moving? or should Grabbing just be included in this file?
@@ -29,21 +31,23 @@ class Gizmoduck:
 		#with the starting position known, start getting a list of movement instructions then execute the movement, make any inspections needed with the sensors, and either grab and drop the target or continue on to the next path.
 		print(self.street_current)
 		print(self.avenue_current)
+		DuckDrive.move_forward_unchecked(7)
+		DuckDrive.rotate_unchecked(90) #clockwise positive maybe?
+		DuckDrive.move_forward_unchecked(2)
+		DuckDrive.rotate_unchecked(90)
+		DuckDrive.move_forward_unchecked(7)
+
 	'''
 	given that we are at the right dock, relocate to the starting position on the left dock
 	'''
 	def relocate_dock_left(self):
 		return
-
+		
 	'''
 	given that we are at the left dock, relocate to the starting position on the right dock
 	'''
 	def relocate_dock_right():
-		return
-
-	'''
-		with the given input angle, initiate the rotation and confirm that 
-	'''
-	def rotate_duck(angle_rotation):
-		return
-
+		DuckDrive.rotate_unchecked(90)
+		DuckDrive.move_forward_unchecked(2)
+		DuckDrive.rotate_unchecked(-90)
+		

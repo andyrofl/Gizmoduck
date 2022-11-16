@@ -12,11 +12,11 @@ STREET_7 = 7
 STREET_8 = 8
 STREET_9 = 9
 
-AVENUE_A = 1
-AVENUE_B = 2
-AVENUE_C = 3
-AVENUE_D = 4
-AVENUE_E = 5
+AVENUE_A = 11
+AVENUE_B = 12
+AVENUE_C = 13
+AVENUE_D = 14
+AVENUE_E = 15 #will have to reduce by 10 when doing math later
 
 
 
