@@ -48,8 +48,11 @@ turn_angle=0
 check_fish=0
 #1=check fish, 0=do nothing
 
-#Each step in the instructions is manually entered here
-while step>0:
+'''
+Each step in the instructions is manually entered here
+The number of steps +1 must be manually entered after 'while step<'
+'''
+while step<4:
 	if step=1:
 		forward_distance=6
 		turn_angle=-90
@@ -65,6 +68,5 @@ while step>0:
 		turn_angle=0
 		check_fish=0
 		step=+1
-	else step=0
 	#something here to run driving functions with the three variables (all except step) and then return for the next step
 	
