@@ -36,7 +36,7 @@ class Gizmoduck:
 			DuckDrive.move_forward_unchecked(path[Navigation.INDEX_DISTANCE])
 			DuckDrive.rotate_degrees_unchecked(path[Navigation.INDEX_ROTATION])
 			step+=1
-			#branch test
+			
 	'''
 	given that we are at the right dock, relocate to the starting position on the left dock
 	'''

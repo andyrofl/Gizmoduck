@@ -43,6 +43,7 @@ def get_path_by_ID(step):
 		forward_distance=6
 		turn_angle=0
 		check_fish=0
+	
 	return [forward_distance, turn_angle, check_fish]
 
 '''
