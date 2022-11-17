@@ -8,24 +8,25 @@ from pybricks.robotics import DriveBase
 #have to import duckeyes to be anble to check rotation and movement?
 
 #CONSTANTS
-BLOCKS_TO_MM = 330 #25.4MM * 13 INCHES
+BLOCKS_TO_MM = 300.2 #25.4MM * 13 INCHES *bullshitscale
 MIDPOINT_LIGHT = 44.5 #midpoint of light range for IR sensor
 
 #variables and objects --initialization
 brick = EV3Brick()
 left = Motor(Port.A)
 right = Motor(Port.B)
-driver = DriveBase(left, right, 100, 22)
+driver = DriveBase(left, right, 22, 100)
 current = StopWatch()
 data = DataLog('Observation','Time', 'Distance', 'Drive Speed', 'Angle', 'Turn Rate')
-driver.settings(800, 200, 100, 35)
+driver.settings(200, 70, 800, 800)
 
 def convert_blocks_to_MM(blocks):
 	return blocks * BLOCKS_TO_MM 
 
 def move_forward_by_blocks(number_of_blocks):
 	#CONTINUE FORWARD UNTIL LIGHT SENSORS AGREE THAT THE CORRECT NUMBER OF BLOCKS HAVE PASSED. DATA LOG THE MOTORS MOVEMENT VALUE TO CROSS CHECK
-
+	return
+'''
 def rotate_by_degrees(degrees_to_rotate):
 	for cycle in range(20):
 	light_level = light.reflection()
@@ -46,12 +47,12 @@ def rotate_by_degrees(degrees_to_rotate):
 		left.run(300)
 		right.run(50)
 		light_level = light.reflection() 
-
+'''
 def rotate_degrees_unchecked(angle_unchecked):
-	driver.turn(degrees_to_rotate)
+	driver.turn(angle_unchecked)
 
 def move_forward_unchecked(distance_unchecked):
-	driver.straight(convert_blocks_to_MM(number_of_blocks))
+	driver.straight(convert_blocks_to_MM(distance_unchecked))
 
 '''
 upon reaching a target and turning the degree value specified by the instruction, should move forward based on input from the distance sensor to prepare to catch the fish,

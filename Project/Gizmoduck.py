@@ -31,11 +31,11 @@ class Gizmoduck:
 		#with the starting position known, start getting a list of movement instructions then execute the movement, make any inspections needed with the sensors, and either grab and drop the target or continue on to the next path.
 		print(self.street_current)
 		print(self.avenue_current)
-		DuckDrive.move_forward_unchecked(7)
-		DuckDrive.rotate_unchecked(90) #clockwise positive maybe?
 		DuckDrive.move_forward_unchecked(2)
-		DuckDrive.rotate_unchecked(90)
-		DuckDrive.move_forward_unchecked(7)
+		DuckDrive.rotate_degrees_unchecked(90) #clockwise positive maybe?
+		DuckDrive.move_forward_unchecked(1)
+		DuckDrive.rotate_degrees_unchecked(-90)
+		DuckDrive.move_forward_unchecked(1)
 
 	'''
 	given that we are at the right dock, relocate to the starting position on the left dock
@@ -47,7 +47,7 @@ class Gizmoduck:
 	given that we are at the left dock, relocate to the starting position on the right dock
 	'''
 	def relocate_dock_right():
-		DuckDrive.rotate_unchecked(90)
+		DuckDrive.rotate_degrees_unchecked(90)
 		DuckDrive.move_forward_unchecked(2)
-		DuckDrive.rotate_unchecked(-90)
+		DuckDrive.rotate_degrees_unchecked(-90)
 		
