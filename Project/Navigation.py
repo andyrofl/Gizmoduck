@@ -1,5 +1,4 @@
 #!/usr/bin/env pybricks-micropython
-#define paths to each fish
 
 #CONSTANTS
 STREET_1 = 1
@@ -20,35 +19,73 @@ AVENUE_E = 15 #will have to reduce by 10 when doing math later
 
 INDEX_DISTANCE = 0
 INDEX_ROTATION = 1
-INDEX_FISH = 2
+INDEX_TRACKING_EDGE = 2
+INDEX_FISH = 3
+
+EDGE_LEFT = -1
+EDGE_CENTER = 0
+EDGE_RIGHT = 1
 
 '''
 Each step in the instructions is manually entered here
-The number of steps +1 must be manually entered after 'while step<'
 '''
 
 def get_path_by_ID(step):
 	forward_distance=0	#number of blocks to move forward
 	turn_angle=0		#Degrees to turn from the direction robot is facing (0 is forward)
+	tracking_edge=0		#The edge of the robot that will track the line. 1 is right, -1 is left, and 0 goes off grid.
 	check_fish=0		#1=check fish, 0=do nothing
-	if step==1:
-		forward_distance=6
-		turn_angle=90
-		check_fish=0
-	elif step==2:
-		forward_distance=2
-		turn_angle=90
-		check_fish=0
-	elif step==3:
-		forward_distance=6
-		turn_angle=0
-		check_fish=0
-	
-	return [forward_distance, turn_angle, check_fish]
+	match step:
+		case 1:
+			forward_distance=6
+			turn_angle=90
+			check_fish=0
+		case 2:
+			forward_distance=2.2
+			turn_angle=90
+			check_fish=0
+		case 3:
+			forward_distance=2.3
+			turn_angle=90
+			check_fish=0
+		case 4:
+			forward_distance=2.0
+			turn_angle=-90
+			check_fish=0
+		case 5:
+			forward_distance=0.4
+			turn_angle=-90
+			check_fish=0
+		case 6:
+			forward_distance=2
+			turn_angle=90
+			check_fish=0
+		case 7:
+			forward_distance=1.2
+			turn_angle=90
+			check_fish=0
+		case 8:
+			forward_distance=2
+			turn_angle=-90
+			check_fish=0
+		case 9:
+			forward_distance=2.3
+			turn_angle=-90
+			check_fish=0
+		case 10:
+			forward_distance=2.0
+			turn_angle=0
+			check_fish=0
+		case 11:
+			forward_distance=0
+			turn_angle=0
+			check_fish=0
+
+	return [forward_distance, turn_angle, tracking_edge, check_fish]
 
 '''
-given the current line and next line, returns the angle needed to turn from current line to the next on the ultimate direction of the destination.
-precondition: logically, current and next lines should intersect.
+	function returns a set of instructions to navigate from the current point to the dock and back
+	IDs are not the same as the previous function and are specific to the location of each fish
 '''
-def get_angle_between_lines(line_current, line_next, line_overnext):
-	return 0 #degrees (positive or negative) needed to turn from current line to next line with heading of the one after it
+def get_return_path_by_fishID(step):
+	return

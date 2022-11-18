@@ -5,17 +5,19 @@ from pybricks.ev3devices import Motor
 from pybricks.parameters import Port, Stop
 from pybricks.tools import wait, StopWatch, DataLog
 from pybricks.robotics import DriveBase
-#have to import duckeyes to be able to check rotation and movement?
+from pybricks.nxtdevices import LightSensor
+from pybricks.parameters import Port
+import DuckEyes
 
 #CONSTANTS
-BLOCKS_TO_MM = 300.2 #25.4MM * 13 INCHES *bullshitscale
+BLOCKS_TO_MM = 300.2 #25.4MM * 13 INCHES
 MIDPOINT_LIGHT = 44.5 #midpoint of light range for IR sensor
-WHEEL_DIAMETER = 44
-AXLE_TRACK = 104 #5 inches end to end, 3.25 inside edges
-STRAIGHT_SPEED = 200
-STRAIGHT_ACCELERATION = 50
-TURN_RATE = 120
-TURN_ACCELERATION = 30
+WHEEL_DIAMETER = 41 #42.86
+AXLE_TRACK = 106 #5 inches end to end, 3.25 inside edges
+STRAIGHT_SPEED = 150
+STRAIGHT_ACCELERATION = 40
+TURN_RATE = 100
+TURN_ACCELERATION = 25
 
 #variables and objects --initialization
 brick = EV3Brick()
@@ -28,8 +30,10 @@ current = StopWatch()
 
 def convert_blocks_to_MM(blocks):
 	return blocks * BLOCKS_TO_MM 
-
-def move_forward_by_blocks(number_of_blocks, sensor_following, sensor_counting):
+'''
+	function moves robot forward a specified number of "blocks" accounting for 
+'''
+def move_forward_by_blocks(number_of_blocks, tracking_edge):
 	#CONTINUE FORWARD UNTIL LIGHT SENSORS AGREE THAT THE CORRECT NUMBER OF BLOCKS HAVE PASSED. DATA LOG THE MOTORS MOVEMENT VALUE TO CROSS CHECK
 	return
 
