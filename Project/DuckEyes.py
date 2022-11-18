@@ -17,7 +17,7 @@ LIGHT_SENSOR_RIGHT = LightSensor(Port.S1)
 	output: the right sensor when the tracking edge is the right side, otherwise the left sensor
 '''
 def get_tracking_sensor(tracking_edge):
-	if tracking_edge == Navigation.EDGE_RIGHT
+	if tracking_edge == Navigation.EDGE_RIGHT:
 		return LIGHT_SENSOR_RIGHT
 	return LIGHT_SENSOR_LEFT
 
@@ -26,7 +26,7 @@ def get_tracking_sensor(tracking_edge):
 	output: the left sensor when the tracking edge is the right side, otherwise the right sensor
 '''
 def get_counting_sensor(tracking_edge):
-	if tracking_edge == Navigation.EDGE_RIGHT
+	if tracking_edge == Navigation.EDGE_RIGHT:
 		return LIGHT_SENSOR_LEFT
 	return LIGHT_SENSOR_RIGHT
 
