@@ -1,6 +1,6 @@
 #!/usr/bin/env pybricks-micropython
 import Navigation
-import DuckEyes
+from DuckEyes import DuckEyes
 import DuckFlippers
 import DuckDrive
 
@@ -28,15 +28,19 @@ class Gizmoduck:
 	This is the main routine for the Gizmoduck object. consider it the actual main() once the Left or Right dock positioning is established by the executable script.
 	'''
 	def run_expedition(self):
-		#with the starting position known, start getting a list of movement instructions then execute the movement, make any inspections needed with the sensors, and either grab and drop the target or continue on to the next path.
-		step=1 #keeps track of the step of the instructions that we are on
-		while step<4:
+		step=1
+		#if there is a fish to check, find a way to the dock and then run that in reverse to go back to where we wer ein the main process
+		print('left light level reading: ', DuckEyes.get_left_level())
+		print('right light level reading: ', DuckEyes.get_right_level())
+		while step<11:
 			path = Navigation.get_path_by_ID(step)
 			print('step:', step, ' with distance :', path[Navigation.INDEX_DISTANCE], ' and rotation: ', path[Navigation.INDEX_ROTATION], ' and fish status:', path[Navigation.INDEX_FISH])
 			DuckDrive.move_forward_unchecked(path[Navigation.INDEX_DISTANCE])
+			#DuckDrive.move_forward_by_blocks(path[Navigation.INDEX_DISTANCE], path[Navigation.INDEX_TURN_EDGE])
 			DuckDrive.rotate_degrees_unchecked(path[Navigation.INDEX_ROTATION])
 			step+=1
-			#branch test
+
+
 	'''
 	given that we are at the right dock, relocate to the starting position on the left dock
 	'''
