@@ -40,46 +40,57 @@ def get_path_by_ID(step):
 			forward_distance=6
 			turn_angle=90
 			check_fish=0
+			tracking_edge=1
 		case 2:
 			forward_distance=2.2
 			turn_angle=90
 			check_fish=0
+			tracking_edge=1
 		case 3:
 			forward_distance=2.3
 			turn_angle=90
 			check_fish=0
+			tracking_edge=1
 		case 4:
 			forward_distance=2.0
 			turn_angle=-90
 			check_fish=0
+			tracking_edge=1
 		case 5:
 			forward_distance=0.4
 			turn_angle=-90
 			check_fish=0
+			tracking_edge=1
 		case 6:
 			forward_distance=2
 			turn_angle=90
 			check_fish=0
+			tracking_edge=1
 		case 7:
 			forward_distance=1.2
 			turn_angle=90
 			check_fish=0
+			tracking_edge=1
 		case 8:
 			forward_distance=2
 			turn_angle=-90
 			check_fish=0
+			tracking_edge=1
 		case 9:
 			forward_distance=2.3
 			turn_angle=-90
 			check_fish=0
+			tracking_edge=1
 		case 10:
 			forward_distance=2.0
 			turn_angle=0
 			check_fish=0
+			tracking_edge=0
 		case 11:
 			forward_distance=0
 			turn_angle=0
 			check_fish=0
+			tracking_edge=0
 
 	return [forward_distance, turn_angle, tracking_edge, check_fish]
 
