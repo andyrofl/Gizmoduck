@@ -1,6 +1,6 @@
 #!/usr/bin/env pybricks-micropython
 import Navigation
-from DuckEyes import DuckEyes
+import DuckEyes
 import DuckFlippers
 import DuckDrive
 
@@ -13,16 +13,14 @@ class Gizmoduck:
 
 
 	#VARIABLES
-	street_current = 0
-	avenue_current = 0
 
 	'''
 	constructor for Gizmoduck object
 	arguments street_initial and avenue_initial are integers from the Navigation file
 	'''
-	def __init__(self, street_initial, avenue_initial):
-		self.street_current = street_initial
-		self.avenue_current = avenue_initial
+	def __init__(self, x_initial, y_initial):
+		DuckDrive.set_x_coordinate = x_initial
+		DuckDrive.set_y_coordinate = y_initial
 
 	'''
 	This is the main routine for the Gizmoduck object. consider it the actual main() once the Left or Right dock positioning is established by the executable script.
@@ -32,12 +30,13 @@ class Gizmoduck:
 		#if there is a fish to check, find a way to the dock and then run that in reverse to go back to where we wer ein the main process
 		print('left light level reading: ', DuckEyes.get_left_level())
 		print('right light level reading: ', DuckEyes.get_right_level())
-		while step<11:
+		while step<2:
 			path = Navigation.get_path_by_ID(step)
 			print('step:', step, ' with distance :', path[Navigation.INDEX_DISTANCE], ' and rotation: ', path[Navigation.INDEX_ROTATION], ' and fish status:', path[Navigation.INDEX_FISH])
-			DuckDrive.move_forward_unchecked(path[Navigation.INDEX_DISTANCE])
-			#DuckDrive.move_forward_by_blocks(path[Navigation.INDEX_DISTANCE], path[Navigation.INDEX_TURN_EDGE])
-			DuckDrive.rotate_degrees_unchecked(path[Navigation.INDEX_ROTATION])
+			#DuckDrive.move_forward_unchecked(path[Navigation.INDEX_DISTANCE])
+			undershoot_compensation = DuckDrive.move_forward_by_blocks(path[Navigation.INDEX_DISTANCE], path[Navigation.INDEX_TRACKING_EDGE], path[Navigation.INDEX_ROTATION])
+			#DuckDrive.rotate_degrees_unchecked(path[Navigation.INDEX_ROTATION])
+			DuckDrive.rotate_degrees(path[Navigation.INDEX_ROTATION], undershoot_compensation)
 			step+=1
 
 

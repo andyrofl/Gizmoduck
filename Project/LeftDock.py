@@ -4,5 +4,5 @@ from Gizmoduck import Gizmoduck
 
 #initialize for starting location of the left side dock
 
-gizmoduck = Gizmoduck(Navigation.STREET_8, Navigation.AVENUE_B)
+gizmoduck = Gizmoduck(1, 8)
 gizmoduck.run_expedition()
