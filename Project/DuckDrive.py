@@ -116,7 +116,7 @@ def calculate_inside_outside(tracking_edge, angle_rotation):
 	input: angle_rotation, the absolute heading of the DriveBase object
 	function modifies either the X or Y coordinate in accordance with the input angle_rotation with the assumption that robot will generally align with one of four cardinal directions
 '''
-def increment_coordinates(angle_rotation):
+'''def increment_coordinates(angle_rotation):
 	#modulus to round, then cases to incement x or y + or - depending on cardinal direction
 	variance = angle_rotation % 90
 	if(variance < 50):
@@ -134,7 +134,7 @@ def increment_coordinates(angle_rotation):
 		case 270:
 			x_coordinate -=1
 		case other:
-			print('coordinate increment out of bounds')
+			print('coordinate increment out of bounds')'''
 
 def set_x_coordinate(x_initial):
 	x_coordinate = x_initial

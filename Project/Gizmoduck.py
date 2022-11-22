@@ -30,7 +30,7 @@ class Gizmoduck:
 		#if there is a fish to check, find a way to the dock and then run that in reverse to go back to where we wer ein the main process
 		print('left light level reading: ', DuckEyes.get_left_level())
 		print('right light level reading: ', DuckEyes.get_right_level())
-		while step<2:
+		while step<12:
 			path = Navigation.get_path_by_ID(step)
 			print('step:', step, ' with distance :', path[Navigation.INDEX_DISTANCE], ' and rotation: ', path[Navigation.INDEX_ROTATION], ' and fish status:', path[Navigation.INDEX_FISH])
 			#DuckDrive.move_forward_unchecked(path[Navigation.INDEX_DISTANCE])
