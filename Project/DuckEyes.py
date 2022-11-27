@@ -11,6 +11,7 @@ LIGHT_SENSOR_RIGHT = LightSensor(Port.S1)
 global IR_left_midpoint
 global IR_right_midpoint
 
+
 '''
 	input: a min and max light level for the left and right sensor
 	both midpoints have been initialized
@@ -20,10 +21,6 @@ def initialize_IR_levels(left_min, left_max, right_min, right_max):
 	global IR_right_midpoint
 	IR_left_midpoint = (left_min + left_max) /2
 	IR_right_midpoint = (right_min + right_max) /2
-
-'''
-	this script encapsulates all the data and functions related to the sensor inputs for Gizmoduck
-'''
 
 '''
 	input: integer tracking_edge correlating to a constant in Navigation
@@ -49,9 +46,15 @@ def get_counting_sensor(tracking_edge):
 def is_target_fish_legal():
 	return True
 
+'''
+	returns an integer representing the light level of the LEFT IR sensor
+'''
 def get_left_level():
 	return LIGHT_SENSOR_LEFT.reflection()
 
+'''
+	returns an integer representing the light level of the RIGHT IR sensor
+'''
 def get_right_level():
 	return LIGHT_SENSOR_RIGHT.reflection()
 

@@ -37,6 +37,9 @@ global x_coordinate
 def convert_blocks_to_MM(blocks):
 	return blocks * BLOCKS_TO_MM 
 
+'''
+	calibrates high and low levels for each IR sensor to calculate an accurate midpoint given current light conditions
+'''
 def calibrate_sensors():
 	distance = convert_blocks_to_MM(0.5)
 	left_min = 85
@@ -144,10 +147,16 @@ def increment_coordinates(angle_rotation):
 	else:
 		print('coordinate increment out of bounds')
 
+'''
+	sets the global x coordinate
+'''
 def set_x_coordinate(x_initial):
 	global x_coordinate
 	x_coordinate = x_initial
 
+'''
+	sets the global y coordinate
+'''
 def set_y_coordinate(y_initial):
 	global y_coordinate
 	y_coordinate = y_initial
