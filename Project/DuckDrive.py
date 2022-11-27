@@ -8,14 +8,13 @@ from pybricks.robotics import DriveBase
 from pybricks.nxtdevices import LightSensor
 from pybricks.parameters import Port
 import DuckEyes
-import Navigation
-import math
 
 
 #CONSTANTS
 BLOCKS_TO_MM = 300.2 #25.4MM * 13 INCHES
 TRACKING_OUTSIDE = False
 TRACKING_INSIDE = True
+BUMP_DISTANCE = 0.4
 
 #TUNEABLES
 WHEEL_DIAMETER = 41 #42.86
@@ -32,8 +31,8 @@ left = Motor(Port.B)
 right = Motor(Port.A)
 driver = DriveBase(left, right, WHEEL_DIAMETER, AXLE_TRACK)
 driver.settings(STRAIGHT_SPEED, STRAIGHT_ACCELERATION, TURN_RATE, TURN_ACCELERATION)
-y_coordinate = 0
-x_coordinate = 0
+global y_coordinate
+global x_coordinate
 
 def convert_blocks_to_MM(blocks):
 	return blocks * BLOCKS_TO_MM 
@@ -70,12 +69,12 @@ def move_forward_by_blocks(number_of_blocks, tracking_edge, angle_rotation, star
 	tracking_sensor = DuckEyes.get_tracking_sensor(tracking_edge)
 	counting_sensor = DuckEyes.get_counting_sensor(tracking_edge)
 	midpoint_tracking = DuckEyes.get_IR_midpoint(tracking_sensor)
+	swapped_tracking = DuckEyes.is_sensor_swapped(tracking_sensor, angle_rotation)
+	crossed_final = False
 	last_count_distance = 0
 	speed = STRAIGHT_SPEED
 	lines_crossed = 0
 	turn_rate = 0
-	crossed_final = False
-	swapped_tracking = DuckEyes.is_sensor_swapped(tracking_sensor, angle_rotation)
 	#if the previous turn was an outside turn, start in motion 
 	if(not start_inside):
 		driver.drive(speed,0)
@@ -84,44 +83,29 @@ def move_forward_by_blocks(number_of_blocks, tracking_edge, angle_rotation, star
 	while lines_crossed < number_of_blocks:
 		driver.drive(speed, turn_rate)
 		#line counting and halting logic
-		if(counting_sensor.reflection() < 20): #was 0 clear and like 90 on a line? if it sees a line increment and wait just long enough to:: LOW IS DARK
+		if(counting_sensor.reflection() < 20):
 			if(driver.distance() > (last_count_distance + 100)):
 				last_count_distance = driver.distance()
 				lines_crossed+=1
 				increment_coordinates(driver.angle())
 				if(lines_crossed == number_of_blocks):
 					crossed_final = True
-					driver.straight(convert_blocks_to_MM(0.4))
+					driver.straight(convert_blocks_to_MM(BUMP_DISTANCE))
 					break
 				elif(lines_crossed == (number_of_blocks-1)):
 					if(is_turn_inside(tracking_edge, angle_rotation)): #if the inside_outside returned false just cut the last block short
-						driver.straight(convert_blocks_to_MM(0.4))
+						driver.straight(convert_blocks_to_MM(BUMP_DISTANCE))
 						break
 		else:#turn rate logic
 			turn_rate = ((tracking_sensor.reflection() - midpoint_tracking)*TURN_MULTIPLIER*tracking_edge)
 			if(lines_crossed == 0 and (turn_rate*tracking_edge)>15):
 				turn_rate =(turn_rate/abs(turn_rate))*15 #if the turn rate towards the target in the first block is too sharp, limit it. turns awy from the line are uncapped.
-	print('it actually made it to this part lol')
 	driver.stop()
 	return (crossed_final and not swapped_tracking) or (not crossed_final and swapped_tracking)
 
-def rotate_degrees(angle_rotation, undershoot):
-	if(undershoot):
-		print('undershoot ', angle_rotation)
-		if(angle_rotation>0):
-			driver.turn(angle_rotation-5)
-		else:
-			driver.turn(angle_rotation+5)
-	else:
-		print('not undershoot ', angle_rotation)
-		driver.turn(angle_rotation)
+def rotate_degrees(angle_rotation):
+	driver.turn(angle_rotation)
 
-
-def rotate_degrees_unchecked(angle_unchecked):
-	driver.turn(angle_unchecked)
-
-def move_forward_unchecked(distance_unchecked):
-	driver.straight(convert_blocks_to_MM(distance_unchecked))
 '''
 	input: tracking_edge corresponding to a constant in Navigation. right edge is positive, left is negative, and 0 goes off grid
 	input: angle_rotation where a positive sign indicates a right turn and negative indicates a left turn
@@ -161,7 +145,9 @@ def increment_coordinates(angle_rotation):
 		print('coordinate increment out of bounds')
 
 def set_x_coordinate(x_initial):
+	global x_coordinate
 	x_coordinate = x_initial
 
 def set_y_coordinate(y_initial):
+	global y_coordinate
 	y_coordinate = y_initial

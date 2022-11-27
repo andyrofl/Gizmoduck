@@ -30,27 +30,11 @@ class Gizmoduck:
 		step=1
 		last_turn_condition = False
 		#if there is a fish to check, find a way to the dock and then run that in reverse to go back to where we wer ein the main process
-		print('left light level reading: ', DuckEyes.get_left_level())
-		print('right light level reading: ', DuckEyes.get_right_level())
 		while step<12:
 			path = Navigation.get_path_by_ID(step)
 			print('step:', step, ' with distance :', path[Navigation.INDEX_DISTANCE], ' and rotation: ', path[Navigation.INDEX_ROTATION], ' and fish status:', path[Navigation.INDEX_FISH])
 			last_turn_condition = DuckDrive.move_forward_by_blocks(path[Navigation.INDEX_DISTANCE], path[Navigation.INDEX_TRACKING_EDGE], path[Navigation.INDEX_ROTATION], last_turn_condition)
-			DuckDrive.rotate_degrees(path[Navigation.INDEX_ROTATION], False)
+			DuckDrive.rotate_degrees(path[Navigation.INDEX_ROTATION])
 			step+=1
 
-
-	'''
-	given that we are at the right dock, relocate to the starting position on the left dock
-	'''
-	def relocate_dock_left(self):
-		return
-		
-	'''
-	given that we are at the left dock, relocate to the starting position on the right dock
-	'''
-	def relocate_dock_right():
-		DuckDrive.rotate_degrees_unchecked(90)
-		DuckDrive.move_forward_unchecked(2)
-		DuckDrive.rotate_degrees_unchecked(-90)
 		
