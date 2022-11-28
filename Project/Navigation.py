@@ -72,5 +72,48 @@ def get_path_by_ID(step):
 	function returns a set of instructions to navigate from the current point to the dock and back
 	IDs are not the same as the previous function and are specific to the location of each fish
 '''
-def get_return_path_by_fishID(step):
-	return
+def get_return_path_by_fishID(fishID, step):
+	forward_distance=0	#number of blocks to move forward
+	turn_angle=0		#Degrees to turn from the direction robot is facing (0 is forward)
+	tracking_edge=0		#The edge of the robot that will track the line. 1 is right, -1 is left, and 0 goes off grid.
+	drop_fish=0
+	match fishID:
+		case 1:
+			match step:
+				case 1:
+					forward_distance=0
+					turn_angle=0
+					tracking_edge=EDGE_CENTER
+					drop_fish=0
+				case 2:
+					forward_distance=0
+					turn_angle=0
+					tracking_edge=EDGE_CENTER
+					drop_fish=0
+				case 3:
+					forward_distance=0
+					turn_angle=0
+					tracking_edge=EDGE_CENTER
+					drop_fish=0
+				case 4:
+					forward_distance=0
+					turn_angle=0
+					tracking_edge=EDGE_CENTER
+					drop_fish=0
+				case 5:
+					forward_distance=0
+					turn_angle=0
+					tracking_edge=EDGE_CENTER
+					drop_fish=0
+				case 6:
+					forward_distance=0
+					turn_angle=0
+					tracking_edge=EDGE_CENTER
+					drop_fish=0
+				case 7:
+					forward_distance=0
+					turn_angle=0
+					tracking_edge=EDGE_CENTER
+					drop_fish=0
+
+	return [forward_distance, turn_angle, tracking_edge]
