@@ -1,22 +1,6 @@
 #!/usr/bin/env pybricks-micropython
 
 #CONSTANTS
-STREET_1 = 1
-STREET_2 = 2
-STREET_3 = 3
-STREET_4 = 4
-STREET_5 = 5
-STREET_6 = 6
-STREET_7 = 7
-STREET_8 = 8
-STREET_9 = 9
-
-AVENUE_A = 11
-AVENUE_B = 12
-AVENUE_C = 13
-AVENUE_D = 14
-AVENUE_E = 15 #will have to reduce by 10 when doing math later
-
 INDEX_DISTANCE = 0
 INDEX_ROTATION = 1
 INDEX_TRACKING_EDGE = 2
@@ -26,6 +10,9 @@ EDGE_LEFT = -1
 EDGE_CENTER = 0
 EDGE_RIGHT = 1
 
+ROTATE_90_LEFT = -90
+ROTATE_90_RIGHT = 90
+ROTATE_NONE = 0
 '''
 Each step in the instructions is manually entered here
 '''

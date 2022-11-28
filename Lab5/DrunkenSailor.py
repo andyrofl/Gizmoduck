@@ -24,13 +24,13 @@ for cycle in range(20):
 	timer = watch.time()
 	data.log(timer, light_level, midpoint)
 	# If the reflected light level is in the acceptable range continue forward
-	while light_level >= (midpoint-3) and lightlevel =< (midpoint+3):
+	while light_level >= (midpoint-3) and light_level <= (midpoint+3):
 		left.run(500)
 		right.run(500)
 		light_level = light.reflection()
 	# If the reflected light is too high turn left 
 	while light_level > (midpoint+3):
-		eft.run(50)
+		left.run(50)
 		right.run(300)
 		light_level = light.reflection()
 	# If the reflected light is too low turn right
