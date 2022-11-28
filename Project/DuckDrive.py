@@ -24,6 +24,7 @@ STRAIGHT_ACCELERATION = 55
 TURN_RATE = 100
 TURN_ACCELERATION = 25
 TURN_MULTIPLIER = 1.2
+TURN_SPEED_LIMIT = 9
 
 #variables and objects --initialization
 brick = EV3Brick()
@@ -101,8 +102,8 @@ def move_forward_by_blocks(number_of_blocks, tracking_edge, angle_rotation, star
 						break
 		else:#turn rate logic
 			turn_rate = ((tracking_sensor.reflection() - midpoint_tracking)*TURN_MULTIPLIER*tracking_edge)
-			if(lines_crossed == 0 and (turn_rate*tracking_edge)>15):
-				turn_rate =(turn_rate/abs(turn_rate))*15 #if the turn rate towards the target in the first block is too sharp, limit it. turns awy from the line are uncapped.
+			if(lines_crossed == 0 and (turn_rate*tracking_edge)>TURN_SPEED_LIMIT):
+				turn_rate =(turn_rate/abs(turn_rate))*TURN_SPEED_LIMIT #if the turn rate towards the target in the first block is too sharp, limit it. turns awy from the line are uncapped.
 	driver.stop()
 	return (crossed_final and not swapped_tracking) or (not crossed_final and swapped_tracking)
 
