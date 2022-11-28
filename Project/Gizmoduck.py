@@ -35,6 +35,14 @@ class Gizmoduck:
 			print('step:', step, ' with distance :', path[Navigation.INDEX_DISTANCE], ' and rotation: ', path[Navigation.INDEX_ROTATION], ' and fish status:', path[Navigation.INDEX_FISH])
 			last_turn_condition = DuckDrive.move_forward_by_blocks(path[Navigation.INDEX_DISTANCE], path[Navigation.INDEX_TRACKING_EDGE], path[Navigation.INDEX_ROTATION], last_turn_condition)
 			DuckDrive.rotate_degrees(path[Navigation.INDEX_ROTATION])
+			if(path[Navigation.INDEX_FISH]):
+					print('there is a fish to catch')
+				#check if the fish is valid
+					#grab the fish
+					#execute nested loop to navigate back to dock
+					#drop the fish
+					#execute nested loop to navigate back to original position
+					#exit the subroutine
 			step+=1
 
 		
