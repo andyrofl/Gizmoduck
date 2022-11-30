@@ -15,14 +15,26 @@ TURN_LEFT = -90
 STRAIGHT = 0
 ROTATE = 180
 
+FISH1 = 8
+FISH2 = 13
+FISH3 = 17
+FISH4 = 20
+FISH5 = 25
+FISH6 = 29
+FISH7 = 33
+FISH8 = 37
+FISH9 = 41
+FISH10 = 45
+FISH11 = 49
+FISH12 = 53
+
 '''
 Original Navigation Instructions:
 
 def get_path_by_ID(step):
 	forward_distance=0	#number of blocks to move forward
 	turn_angle=0		#Degrees to turn from the direction robot is facing (0 is forward)
-	tracking_edge=0		#The edge of the robot that will track the line. 1 is right, -1 is left, and 0 goes off grid.
-	check_fish=0		#True=check fish, False=do nothing   0 do nothing, greater than zero go that distance to be near the fish
+	tracking_edge=0		#The edge of the robot that will track the line. 1 is right, -1 is left, and 0 goes off grid		#True=check fish, False=do nothing   0 do nothing, greater than zero go that distance to be near the fish
 	if(step == 1):
 		forward_distance=6
 		turn_angle=ROTATE_90_RIGHT
@@ -77,251 +89,235 @@ def get_path_by_ID(step):
 	forward_distance=0	#number of blocks to move forward
 	turn_angle=0		#Degrees to turn from the direction robot is facing (0 is forward)
 	tracking_edge=0		#The edge of the robot that will track the line. 1 is right, -1 is left, and 0 goes off grid.
-	check_fish=0		#1=check fish, 0=do nothing
+	check_fish=False		#1=check fish, 0=do nothing
 	
 	if (step == 1):
 		tracking_edge=EDGE_RIGHT
-		forward_distance=.7
-		check_fish=0
+		forward_distance=6
 		turn_angle=TURN_RIGHT
 	elif (step == 2):
-		tracking_edge=EDGE_CENTER
-		forward_distance=.5
-		check_fish=1
-		turn_angle=ROTATE
+		tracking_edge=EDGE_RIGHT
+		forward_distance=2
+		turn_angle=TURN_RIGHT
 	elif (step == 3):
-		tracking_edge=EDGE_CENTER
-		forward_distance=.5
-		check_fish=0
+		tracking_edge=EDGE_RIGHT
+		forward_distance=2
 		turn_angle=TURN_RIGHT
 	elif (step == 4):
 		tracking_edge=EDGE_RIGHT
-		forward_distance=1
-		check_fish=0
-		turn_angle=TURN_RIGHT
+		forward_distance=2
+		turn_angle=TURN_LEFT
 	elif (step == 5):
-		tracking_edge=EDGE_CENTER
-		forward_distance=1.1
-		check_fish=0
-		turn_angle=TURN_RIGHT
+		tracking_edge=EDGE_LEFT
+		forward_distance=2
+		turn_angle=STRAIGHT
 	elif (step == 6):
 		tracking_edge=EDGE_CENTER
-		forward_distance=.2
-		check_fish=1
-		turn_angle=ROTATE
+		forward_distance=.5
+		turn_angle=TURN_LEFT
 	elif (step == 7):
 		tracking_edge=EDGE_CENTER
-		forward_distance=.2
-		check_fish=0
+		forward_distance=.1
 		turn_angle=TURN_RIGHT
-	elif (step == 8):
+	elif (step == FISH1):
 		tracking_edge=EDGE_CENTER
-		forward_distance=1.1
-		check_fish=0
-		turn_angle=TURN_RIGHT
+		forward_distance=.4
+		check_fish=True
+		turn_angle=ROTATE
 	elif (step == 9):
-		tracking_edge=EDGE_RIGHT
-		forward_distance=1
-		check_fish=0
+		tracking_edge=EDGE_CENTER
+		forward_distance=.5
 		turn_angle=TURN_RIGHT
 	elif (step == 10):
 		tracking_edge=EDGE_CENTER
-		forward_distance=.5
-		check_fish=1
-		turn_angle=ROTATE
-	elif (step == 11):
-		tracking_edge=EDGE_CENTER
-		forward_distance=.5
-		check_fish=0
+		forward_distance=1.1
 		turn_angle=TURN_RIGHT
-	elif (step == 12):
+	elif (step == 11):
 		tracking_edge=EDGE_RIGHT
 		forward_distance=1
-		check_fish=0
-		turn_angle=TURN_RIGHT
-	elif (step == 13):
+		turn_angle=STRAIGHT
+	elif (step == 12):
 		tracking_edge=EDGE_CENTER
-		forward_distance=1.1
-		check_fish=0
+		forward_distance=.5
 		turn_angle=TURN_RIGHT
+	elif (step == FISH2):
+		tracking_edge=EDGE_CENTER
+		forward_distance=.5
+		check_fish=True
+		turn_angle=ROTATE
 	elif (step == 14):
 		tracking_edge=EDGE_CENTER
-		forward_distance=.2
-		check_fish=1
-		turn_angle=ROTATE
+		forward_distance=.5
+		turn_angle=TURN_RIGHT
 	elif (step == 15):
-		tracking_edge=EDGE_CENTER
-		forward_distance=.2
-		check_fish=0
+		tracking_edge=EDGE_RIGHT
+		forward_distance=1
 		turn_angle=TURN_RIGHT
 	elif (step == 16):
-		tracking_edge=EDGE_CENTER
-		forward_distance=1.1
-		check_fish=0
-		turn_angle=TURN_RIGHT
-	#End of Lake 1 Instructions
-	#Begin Lake 2 Instructions
-	elif (step == 17):
 		tracking_edge=EDGE_RIGHT
-		forward_distance=2.6
-		check_fish=0
+		forward_distance=1
 		turn_angle=TURN_RIGHT
+	elif (step == FISH3):
+		tracking_edge=EDGE_CENTER
+		forward_distance=0
+		check_fish=True
+		turn_angle=TURN_LEFT
 	elif (step == 18):
 		tracking_edge=EDGE_RIGHT
 		forward_distance=1
-		check_fish=0
 		turn_angle=TURN_RIGHT
 	elif (step == 19):
-		tracking_edge=EDGE_RIGHT
-		forward_distance=.4
-		check_fish=0
-		turn_angle=TURN_RIGHT
-	elif (step == 20):
 		tracking_edge=EDGE_CENTER
-		forward_distance=.1
-		check_fish=1
+		forward_distance=.5
+		turn_angle=TURN_RIGHT
+	elif (step == FISH4):
+		tracking_edge=EDGE_CENTER
+		forward_distance=.5
+		check_fish=True
 		turn_angle=ROTATE
+	#End of Lake 1 Instructions
+	#Begin Lake 2 Instructions
 	elif (step == 21):
 		tracking_edge=EDGE_CENTER
-		forward_distance=.1
-		check_fish=0
+		forward_distance=.5
 		turn_angle=TURN_RIGHT
 	elif (step == 22):
 		tracking_edge=EDGE_RIGHT
-		forward_distance=.6
-		check_fish=0
+		forward_distance=2
 		turn_angle=TURN_RIGHT
 	elif (step == 23):
 		tracking_edge=EDGE_RIGHT
-		forward_distance=.6
-		check_fish=0
-		turn_angle=TURN_RIGHT
+		forward_distance=1
+		turn_angle=TURN_LEFT
 	elif (step == 24):
 		tracking_edge=EDGE_CENTER
-		forward_distance=.1
-		check_fish=1
-		turn_angle=ROTATE
-	elif (step == 25):
+		forward_distance=.4
+		turn_angle=TURN_RIGHT
+	elif (step == FISH5):
 		tracking_edge=EDGE_CENTER
 		forward_distance=.1
-		check_fish=0
-		turn_angle=TURN_RIGHT
+		check_fish=True
+		turn_angle=ROTATE
 	elif (step == 26):
-		tracking_edge=EDGE_RIGHT
-		forward_distance=.6
-		check_fish=0
+		tracking_edge=EDGE_CENTER
+		forward_distance=.1
 		turn_angle=TURN_RIGHT
 	elif (step == 27):
 		tracking_edge=EDGE_RIGHT
-		forward_distance=.6
-		check_fish=0
+		forward_distance=1
 		turn_angle=TURN_RIGHT
 	elif (step == 28):
 		tracking_edge=EDGE_CENTER
-		forward_distance=.1
-		check_fish=1
-		turn_angle=ROTATE
-	elif (step == 29):
+		forward_distance=.6
+		turn_angle=TURN_RIGHT
+	elif (step == FISH6):
 		tracking_edge=EDGE_CENTER
 		forward_distance=.1
-		check_fish=0
-		turn_angle=TURN_RIGHT
+		check_fish=True
+		turn_angle=ROTATE
 	elif (step == 30):
-		tracking_edge=EDGE_RIGHT
-		forward_distance=.6
-		check_fish=0
+		tracking_edge=EDGE_CENTER
+		forward_distance=.1
 		turn_angle=TURN_RIGHT
 	elif (step == 31):
 		tracking_edge=EDGE_RIGHT
-		forward_distance=.6
-		check_fish=0
+		forward_distance=1
 		turn_angle=TURN_RIGHT
 	elif (step == 32):
 		tracking_edge=EDGE_CENTER
-		forward_distance=.1
-		check_fish=1
-		turn_angle=ROTATE
-	elif (step == 33):
+		forward_distance=.6
+		turn_angle=TURN_RIGHT
+	elif (step == FISH7):
 		tracking_edge=EDGE_CENTER
 		forward_distance=.1
-		check_fish=0
+		check_fish=True
+		turn_angle=ROTATE
+	elif (step == 34):
+		tracking_edge=EDGE_CENTER
+		forward_distance=.1
+		turn_angle=TURN_RIGHT
+	elif (step == 35):
+		tracking_edge=EDGE_RIGHT
+		forward_distance=1
+		turn_angle=TURN_RIGHT
+	elif (step == 36):
+		tracking_edge=EDGE_CENTER
+		forward_distance=.6
+		turn_angle=TURN_RIGHT
+	elif (step == FISH8):
+		tracking_edge=EDGE_CENTER
+		forward_distance=.1
+		check_fish=True
+		turn_angle=ROTATE
+	elif (step == 38):
+		tracking_edge=EDGE_CENTER
+		forward_distance=.1
 		turn_angle=TURN_LEFT
 	#End of Lake 2 Instructions
 	#Begin Lake 3 Instructions
-	elif (step == 34):
-		tracking_edge=EDGE_LEFT
-		forward_distance=.6
-		check_fish=0
-		turn_angle=TURN_LEFT
-	elif (step == 35):
-		tracking_edge=EDGE_LEFT
-		forward_distance=3.1
-		check_fish=0
-		turn_angle=TURN_LEFT
-	elif (step == 36):
-		tracking_edge=EDGE_CENTER
-		forward_distance=.3
-		check_fish=1
-		turn_angle=ROTATE
-	elif (step == 37):
-		tracking_edge=EDGE_CENTER
-		forward_distance=.3
-		check_fish=0
-		turn_angle=TURN_LEFT
-	elif (step == 38):
-		tracking_edge=EDGE_LEFT
-		forward_distance=1.1
-		check_fish=0
-		turn_angle=TURN_LEFT
 	elif (step == 39):
 		tracking_edge=EDGE_LEFT
-		forward_distance=1.1
-		check_fish=0
+		forward_distance=1
 		turn_angle=TURN_LEFT
 	elif (step == 40):
-		tracking_edge=EDGE_CENTER
-		forward_distance=.3
-		check_fish=1
-		turn_angle=ROTATE
-	elif (step == 41):
-		tracking_edge=EDGE_CENTER
-		forward_distance=.3
-		check_fish=0
-		turn_angle=TURN_LEFT
-	elif (step == 42):
 		tracking_edge=EDGE_LEFT
-		forward_distance=1.1
-		check_fish=0
+		forward_distance=3
+		turn_angle=TURN_LEFT
+	elif (step == FISH9):
+		tracking_edge=EDGE_CENTER
+		forward_distance=.3
+		check_fish=True
+		turn_angle=ROTATE
+	elif (step == 42):
+		tracking_edge=EDGE_CENTER
+		forward_distance=.3
 		turn_angle=TURN_LEFT
 	elif (step == 43):
 		tracking_edge=EDGE_LEFT
-		forward_distance=1.1
-		check_fish=0
+		forward_distance=1
 		turn_angle=TURN_LEFT
 	elif (step == 44):
-		tracking_edge=EDGE_CENTER
-		forward_distance=.3
-		check_fish=1
-		turn_angle=ROTATE
-	elif (step == 45):
-		tracking_edge=EDGE_CENTER
-		forward_distance=.3
-		check_fish=0
-		turn_angle=TURN_LEFT
-	elif (step == 46):
 		tracking_edge=EDGE_LEFT
-		forward_distance=1.1
-		check_fish=0
+		forward_distance=1
+		turn_angle=TURN_LEFT
+	elif (step == FISH10):
+		tracking_edge=EDGE_CENTER
+		forward_distance=.3
+		check_fish=True
+		turn_angle=ROTATE
+	elif (step == 46):
+		tracking_edge=EDGE_CENTER
+		forward_distance=.3
 		turn_angle=TURN_LEFT
 	elif (step == 47):
 		tracking_edge=EDGE_LEFT
-		forward_distance=1.1
-		check_fish=0
+		forward_distance=1
 		turn_angle=TURN_LEFT
 	elif (step == 48):
+		tracking_edge=EDGE_LEFT
+		forward_distance=1
+		turn_angle=TURN_LEFT
+	elif (step == FISH11):
 		tracking_edge=EDGE_CENTER
 		forward_distance=.3
-		check_fish=1
+		check_fish=True
+		turn_angle=ROTATE
+	elif (step == 50):
+		tracking_edge=EDGE_CENTER
+		forward_distance=.3
+		turn_angle=TURN_LEFT
+	elif (step == 51):
+		tracking_edge=EDGE_LEFT
+		forward_distance=1
+		turn_angle=TURN_LEFT
+	elif (step == 52):
+		tracking_edge=EDGE_LEFT
+		forward_distance=1
+		turn_angle=TURN_LEFT
+	elif (step == FISH12):
+		tracking_edge=EDGE_CENTER
+		forward_distance=.3
+		check_fish=True
 		turn_angle=ROTATE
 	return [tracking_edge, forward_distance, check_fish, turn_angle]
 
@@ -330,472 +326,442 @@ def get_path_by_ID(step):
 	function returns a set of instructions to navigate from the current point to the dock and back
 	IDs are not the same as the previous function and are specific to the location of each fish
 '''
-def get_return_path_by_fishID(fishID, step):
+def get_return_path_by_fishID(step, return_step):
 	forward_distance=0	#number of blocks to move forward
 	turn_angle=0		#Degrees to turn from the direction robot is facing (0 is forward)
 	tracking_edge=0		#The edge of the robot that will track the line. 1 is right, -1 is left, and 0 goes off grid.
-	drop_fish=0
-	if (fishID == 1):			
-		if (step == 1):
-			tracking_edge=EDGE_CENTER
-			forward_distance=.2
-			drop_fish=0
-			turn_angle=TURN_LEFT
-		elif (step == 2):
-			tracking_edge=EDGE_RIGHT
-			forward_distance=1
-			drop_fish=0
-			turn_angle=TURN_RIGHT
-		elif (step == 3):
+	drop_fish=False
+	if (step == FISH1):
+		if (return_step == 1):
 			tracking_edge=EDGE_CENTER
 			forward_distance=.3
-			drop_fish=1
-			turn_angle=ROTATE
-		elif (step == 4):
-			tracking_edge=EDGE_CENTER
-			forward_distance=.3
-			drop_fish=0
 			turn_angle=TURN_LEFT
-		elif (step == 5):
-			tracking_edge=EDGE_LEFT
-			forward_distance=1
-			drop_fish=0
-			turn_angle=TURN_RIGHT
-		elif (step == 6):
-			tracking_edge=EDGE_CENTER
-			forward_distance=.2
-			drop_fish=0
-			turn_angle=ROTATE
-	elif (fishID == 2):
-		if (step == 1):
-			tracking_edge=EDGE_CENTER
-			forward_distance=.3
-			drop_fish=0
-			turn_angle=TURN_LEFT
-		elif (step == 2):
+		elif (return_step == 2):
 			tracking_edge=EDGE_CENTER
 			forward_distance=.9
-			drop_fish=0
 			turn_angle=TURN_LEFT
-		elif (step == 3):
+		elif (return_step == 3):
 			tracking_edge=EDGE_RIGHT
 			forward_distance=2
-			drop_fish=0
-			turn_angle=TURN_RIGHT
-		elif (step == 4):
-			tracking_edge=EDGE_CENTER
-			forward_distance=.3
-			drop_fish=1
-			turn_angle=ROTATE
-		elif (step == 5):
-			tracking_edge=EDGE_CENTER
-			forward_distance=.3
-			drop_fish=0
-			turn_angle=TURN_LEFT
-		elif (step == 6):
-			tracking_edge=EDGE_LEFT
-			forward_distance=2
-			drop_fish=0
-			turn_angle=TURN_RIGHT
-		elif (step == 7):
-			tracking_edge=EDGE_CENTER
-			forward_distance=1
-			drop_fish=0
-			turn_angle=TURN_RIGHT
-		elif (step == 8):
-			tracking_edge=EDGE_CENTER
-			forward_distance=.3
-			drop_fish=0
-			turn_angle=ROTATE
-	elif (fishID == 3):
-		if (step == 1):
-			tracking_edge=EDGE_CENTER
-			forward_distance=.2
-			drop_fish=0
-			turn_angle=TURN_RIGHT
-		elif (step == 2):
-			tracking_edge=EDGE_LEFT
-			forward_distance=1
-			drop_fish=0
-			turn_angle=TURN_LEFT
-		elif (step == 3):
-			tracking_edge=EDGE_CENTER
-			forward_distance=.3
-			drop_fish=1
-			turn_angle=ROTATE
-		elif (step == 4):
-			tracking_edge=EDGE_CENTER
-			forward_distance=.3
-			drop_fish=0
-			turn_angle=TURN_RIGHT
-		elif (step == 5):
-			tracking_edge=EDGE_RIGHT
-			forward_distance=1
-			drop_fish=0
-			turn_angle=TURN_LEFT
-		elif (step == 6):
-			tracking_edge=EDGE_CENTER
-			forward_distance=.2
-			drop_fish=0
-			turn_angle=ROTATE
-	elif (fishID == 4):
-		if (step == 1):
-			tracking_edge=EDGE_CENTER
-			forward_distance=.3
-			drop_fish=0
-			turn_angle=TURN_RIGHT
-		elif (step == 2):
-			tracking_edge=EDGE_CENTER
-			forward_distance=1.2
-			drop_fish=1
-			turn_angle=ROTATE
-		elif (step == 3):
-			tracking_edge=EDGE_CENTER
-			forward_distance=1.2
-			drop_fish=0
-			turn_angle=TURN_LEFT
-		elif (step == 4):
-			tracking_edge=EDGE_CENTER
-			forward_distance=.3
-			drop_fish=0
-			turn_angle=ROTATE
-	elif (fishID == 5):
-		if (step == 1):
-			tracking_edge=EDGE_CENTER
-			forward_distance=1
-			drop_fish=0
-			turn_angle=TURN_LEFT
-		elif (step == 2):
-			tracking_edge=EDGE_RIGHT
-			forward_distance=3
-			drop_fish=0
-			turn_angle=TURN_RIGHT
-		elif (step == 3):
-			tracking_edge=EDGE_CENTER
-			forward_distance=.3
-			drop_fish=1
-			turn_angle=ROTATE
-		elif (step == 4):
-			tracking_edge=EDGE_CENTER
-			forward_distance=.3
-			drop_fish=0
-			turn_angle=TURN_LEFT
-		elif (step == 5):
-			tracking_edge=EDGE_LEFT
-			forward_distance=3
-			drop_fish=0
-			turn_angle=TURN_RIGHT
-		elif (step == 6):
-			tracking_edge=EDGE_CENTER
-			forward_distance=1
-			drop_fish=0
-			turn_angle=ROTATE
-	elif (fishID == 6):
-		if (step == 1):
-			tracking_edge=EDGE_CENTER
-			forward_distance=.1
-			drop_fish=0
-			turn_angle=TURN_RIGHT
-		elif (step == 2):
-			tracking_edge=EDGE_RIGHT
-			forward_distance=.6
-			drop_fish=0
-			turn_angle=TURN_RIGHT
-		elif (step == 3):
-			tracking_edge=EDGE_RIGHT
-			forward_distance=3
-			drop_fish=0
-			turn_angle=TURN_LEFT
-		elif (step == 4):
-			tracking_edge=EDGE_RIGHT
-			forward_distance=.4
-			drop_fish=0
-			turn_angle=TURN_RIGHT
-		elif (step == 5):
-			tracking_edge=EDGE_CENTER
-			forward_distance=.4
-			drop_fish=1
-			turn_angle=ROTATE
-		elif (step == 6):
-			tracking_edge=EDGE_CENTER
-			forward_distance=.4
-			drop_fish=0
-			turn_angle=TURN_LEFT
-		elif (step == 7):
-			tracking_edge=EDGE_LEFT
-			forward_distance=.4
-			drop_fish=0
-			turn_angle=TURN_RIGHT
-		elif (step == 8):
-			tracking_edge=EDGE_LEFT
-			forward_distance=3
-			drop_fish=0
-			turn_angle=TURN_LEFT
-		elif (step == 9):
-			tracking_edge=EDGE_LEFT
-			forward_distance=.6
-			drop_fish=0
-			turn_angle=TURN_LEFT
-		elif (step == 10):
-			tracking_edge=EDGE_CENTER
-			forward_distance=.1
-			drop_fish=0
-			turn_angle=ROTATE
-	elif (fishID == 7):
-		if (step == 1):
-			tracking_edge=EDGE_CENTER
-			forward_distance=.1
-			drop_fish=0
-			turn_angle=TURN_RIGHT
-		elif (step == 2):
-			tracking_edge=EDGE_RIGHT
-			forward_distance=2.4
-			drop_fish=0
-			turn_angle=TURN_LEFT
-		elif (step == 3):
-			tracking_edge=EDGE_RIGHT
-			forward_distance=.4
-			drop_fish=0
-			turn_angle=TURN_RIGHT
-		elif (step == 4):
-			tracking_edge=EDGE_CENTER
-			forward_distance=.4
-			drop_fish=1
-			turn_angle=ROTATE
-		elif (step == 5):
-			tracking_edge=EDGE_CENTER
-			forward_distance=.4
-			drop_fish=0
-			turn_angle=TURN_LEFT
-		elif (step == 6):
-			tracking_edge=EDGE_LEFT
-			forward_distance=.4
-			drop_fish=0
-			turn_angle=TURN_RIGHT
-		elif (step == 7):
-			tracking_edge=EDGE_LEFT
-			forward_distance=2.4
-			drop_fish=0
-			turn_angle=TURN_LEFT
-		elif (step == 8):
-			tracking_edge=EDGE_CENTER
-			forward_distance=.1
-			drop_fish=0
-			turn_angle=ROTATE
-	elif (fishID == 8):
-		if (step == 1):
+			turn_angle=STRAIGHT
+		elif (return_step == 4):
 			tracking_edge=EDGE_CENTER
 			forward_distance=.5
-			drop_fish=0
-			turn_angle=TURN_LEFT
-		elif (step == 2):
-			tracking_edge=EDGE_CENTER
-			forward_distance=.4
-			drop_fish=0
 			turn_angle=TURN_RIGHT
-		elif (step == 3):
+		elif (return_step == 5):
+			tracking_edge=EDGE_CENTER
+			forward_distance=.3
+			drop_fish=True
+			turn_angle=ROTATE
+		elif (return_step == 6):
+			tracking_edge=EDGE_CENTER
+			forward_distance=.3
+			turn_angle=TURN_LEFT
+		elif (return_step == 7):
 			tracking_edge=EDGE_LEFT
 			forward_distance=2
-			drop_fish=0
-			turn_angle=TURN_LEFT
-		elif (step == 4):
-			tracking_edge=EDGE_CENTER
-			forward_distance=.3
-			drop_fish=1
-			turn_angle=ROTATE
-		elif (step == 5):
-			tracking_edge=EDGE_CENTER
-			forward_distance=.3
-			drop_fish=0
-			turn_angle=TURN_RIGHT
-		elif (step == 6):
-			tracking_edge=EDGE_RIGHT
-			forward_distance=2
-			drop_fish=0
-			turn_angle=TURN_LEFT
-		elif (step == 7):
-			tracking_edge=EDGE_CENTER
-			forward_distance=.4
-			drop_fish=0
-			turn_angle=TURN_RIGHT
-		elif (step == 8):
+			turn_angle=STRAIGHT
+		elif (return_step == 8):
 			tracking_edge=EDGE_CENTER
 			forward_distance=.5
-			drop_fish=0
-			turn_angle=ROTATE
-	elif (fishID == 9):
-		if (step == 1):
+			turn_angle=TURN_RIGHT
+		elif (return_step == 9):
+			tracking_edge=EDGE_CENTER
+			forward_distance=1
+			turn_angle=TURN_RIGHT
+		elif (return_step == 10):
 			tracking_edge=EDGE_CENTER
 			forward_distance=.3
-			drop_fish=0
-			turn_angle=TURN_RIGHT
-		elif (step == 2):
-			tracking_edge=EDGE_RIGHT
-			forward_distance=4.9
-			drop_fish=0
-			turn_angle=TURN_LEFT
-		elif (step == 3):
-			tracking_edge=EDGE_RIGHT
-			forward_distance=.4
-			drop_fish=0
-			turn_angle=TURN_RIGHT
-		elif (step == 4):
-			tracking_edge=EDGE_CENTER
-			forward_distance=.4
-			drop_fish=1
 			turn_angle=ROTATE
-		elif (step == 5):
+	elif (step == FISH2):
+		if (return_step == 1):
 			tracking_edge=EDGE_CENTER
-			forward_distance=.4
-			drop_fish=0
-			turn_angle=TURN_LEFT
-		elif (step == 6):
-			tracking_edge=EDGE_LEFT
-			forward_distance=.4
-			drop_fish=0
+			forward_distance=.2
 			turn_angle=TURN_RIGHT
-		elif (step == 7):
+		elif (return_step == 2):
 			tracking_edge=EDGE_LEFT
-			forward_distance=4.9
-			drop_fish=0
+			forward_distance=1
+			turn_angle=STRAIGHT
+		elif (return_step == 3):
+			tracking_edge=EDGE_CENTER
+			forward_distance=.5
 			turn_angle=TURN_LEFT
-		elif (step == 8):
+		elif (return_step == 4):
 			tracking_edge=EDGE_CENTER
 			forward_distance=.3
-			drop_fish=0
+			drop_fish=True
 			turn_angle=ROTATE
-	elif (fishID == 10):
-		if (step == 1):
+		elif (return_step == 5):
 			tracking_edge=EDGE_CENTER
 			forward_distance=.3
-			drop_fish=0
 			turn_angle=TURN_RIGHT
-		elif (step == 2):
+		elif (return_step == 6):
 			tracking_edge=EDGE_RIGHT
-			forward_distance=1.1
-			drop_fish=0
-			turn_angle=TURN_RIGHT
-		elif (step == 3):
-			tracking_edge=EDGE_RIGHT
-			forward_distance=6
-			drop_fish=0
-			turn_angle=TURN_LEFT
-		elif (step == 4):
-			tracking_edge=EDGE_RIGHT
-			forward_distance=.4
-			drop_fish=0
-			turn_angle=TURN_RIGHT
-		elif (step == 5):
+			forward_distance=1
+			turn_angle=STRAIGHT
+		elif (return_step == 7):
 			tracking_edge=EDGE_CENTER
-			forward_distance=.4
-			drop_fish=1
+			forward_distance=.5
+			turn_angle=TURN_LEFT
+		elif (return_step == 8):
+			tracking_edge=EDGE_CENTER
+			forward_distance=.2
 			turn_angle=ROTATE
-		elif (step == 6):
+	elif (step == FISH3):
+		if (return_step == 1):
+			tracking_edge=EDGE_RIGHT
+			forward_distance=1
+			turn_angle=STRAIGHT
+		elif (return_step == 2):
 			tracking_edge=EDGE_CENTER
-			forward_distance=.4
-			drop_fish=0
+			forward_distance=.5
 			turn_angle=TURN_LEFT
-		elif (step == 7):
+		elif (return_step == 3):
+			tracking_edge=EDGE_CENTER
+			forward_distance=0
+			drop_fish=True
+			turn_angle=TURN_LEFT
+		elif (return_step == 4):
 			tracking_edge=EDGE_LEFT
-			forward_distance=.4
-			drop_fish=0
+			forward_distance=2
+			turn_angle=ROTATE
+	elif (step == FISH4):			
+		if (return_step == 1):
+			tracking_edge=EDGE_CENTER
+			forward_distance=.2
+			turn_angle=TURN_LEFT
+		elif (return_step == 2):
+			tracking_edge=EDGE_RIGHT
+			forward_distance=1
+			turn_angle=STRAIGHT
+		elif (return_step == 3):
+			tracking_edge=EDGE_CENTER
+			forward_distance=.5
 			turn_angle=TURN_RIGHT
-		elif (step == 8):
-			tracking_edge=EDGE_LEFT
-			forward_distance=6
-			drop_fish=0
-			turn_angle=TURN_LEFT
-		elif (step == 9):
-			tracking_edge=EDGE_LEFT
-			forward_distance=1.1
-			drop_fish=0
-			turn_angle=TURN_LEFT
-		elif (step == 10):
+		elif (return_step == 4):
 			tracking_edge=EDGE_CENTER
 			forward_distance=.3
-			drop_fish=0
+			drop_fish=True
 			turn_angle=ROTATE
-	elif (fishID == 11):
-		if (step == 1):
+		elif (return_step == 5):
 			tracking_edge=EDGE_CENTER
 			forward_distance=.3
-			drop_fish=0
 			turn_angle=TURN_LEFT
-		elif (step == 2):
+		elif (return_step == 6):
 			tracking_edge=EDGE_LEFT
-			forward_distance=4.9
-			drop_fish=0
-			turn_angle=TURN_RIGHT
-		elif (step == 3):
-			tracking_edge=EDGE_LEFT
-			forward_distance=.4
-			drop_fish=0
-			turn_angle=TURN_LEFT
-		elif (step == 4):
+			forward_distance=1
+			turn_angle=STRAIGHT
+		elif (return_step == 7):
 			tracking_edge=EDGE_CENTER
-			forward_distance=.4
-			drop_fish=1
+			forward_distance=.5
+			turn_angle=TURN_RIGHT
+		elif (return_step == 8):
+			tracking_edge=EDGE_CENTER
+			forward_distance=.2
 			turn_angle=ROTATE
-		elif (step == 5):
-			tracking_edge=EDGE_CENTER
-			forward_distance=.4
-			drop_fish=0
-			turn_angle=TURN_RIGHT
-		elif (step == 6):
-			tracking_edge=EDGE_RIGHT
-			forward_distance=.4
-			drop_fish=0
-			turn_angle=TURN_LEFT
-		elif (step == 7):
-			tracking_edge=EDGE_RIGHT
-			forward_distance=4.9
-			drop_fish=0
-			turn_angle=TURN_RIGHT
-		elif (step == 8):
-			tracking_edge=EDGE_CENTER
-			forward_distance=.3
-			drop_fish=0
-			turn_angle=ROTATE
-	elif (fishID == 12):
-		if (step == 1):
-			tracking_edge=EDGE_CENTER
-			forward_distance=.3
-			drop_fish=0
-			turn_angle=TURN_RIGHT
-		elif (step == 2):
+	elif (step == FISH5):
+		if (return_step == 1):
 			tracking_edge=EDGE_CENTER
 			forward_distance=.9
-			drop_fish=0
 			turn_angle=TURN_LEFT
-		elif (step == 3):
+		elif (return_step == 2):
 			tracking_edge=EDGE_RIGHT
-			forward_distance=4.4
-			drop_fish=0
+			forward_distance=3
+			turn_angle=STRAIGHT
+		elif (return_step == 3):
+			tracking_edge=EDGE_CENTER
+			forward_distance=.5
 			turn_angle=TURN_RIGHT
-		elif (step == 4):
+		elif (return_step == 4):
 			tracking_edge=EDGE_CENTER
 			forward_distance=.3
-			drop_fish=1
+			drop_fish=True
 			turn_angle=ROTATE
-		elif (step == 5):
+		elif (return_step == 5):
 			tracking_edge=EDGE_CENTER
 			forward_distance=.3
-			drop_fish=0
 			turn_angle=TURN_LEFT
-		elif (step == 6):
+		elif (return_step == 6):
 			tracking_edge=EDGE_LEFT
-			forward_distance=4.4
-			drop_fish=0
-			turn_angle=TURN_RIGHT
-		elif (step == 7):
+			forward_distance=3
+			turn_angle=STRAIGHT
+		elif (return_step == 7):
 			tracking_edge=EDGE_CENTER
-			forward_distance=1
-			drop_fish=0
+			forward_distance=.5
 			turn_angle=TURN_RIGHT
-		elif (step == 8):
+		elif (return_step == 8):
+			tracking_edge=EDGE_CENTER
+			forward_distance=.9
+			turn_angle=ROTATE
+	elif (step == FISH6):
+		if (return_step == 1):
+			tracking_edge=EDGE_CENTER
+			forward_distance=.1
+			turn_angle=TURN_RIGHT
+		elif (return_step == 2):
+			tracking_edge=EDGE_RIGHT
+			forward_distance=1
+			turn_angle=TURN_RIGHT
+		elif (return_step == 3):
+			tracking_edge=EDGE_RIGHT
+			forward_distance=3
+			turn_angle=TURN_LEFT
+		elif (return_step == 4):
+			tracking_edge=EDGE_CENTER
+			forward_distance=.4
+			turn_angle=TURN_RIGHT
+		elif (return_step == 5):
+			tracking_edge=EDGE_CENTER
+			forward_distance=.4
+			drop_fish=True
+			turn_angle=ROTATE
+		elif (return_step == 6):
+			tracking_edge=EDGE_CENTER
+			forward_distance=.6
+			turn_angle=TURN_LEFT
+		elif (return_step == 7):
+			tracking_edge=EDGE_CENTER
+			forward_distance=.4
+			turn_angle=TURN_RIGHT
+		elif (return_step == 8):
+			tracking_edge=EDGE_LEFT
+			forward_distance=3
+			turn_angle=STRAIGHT
+		elif (return_step == 9):
+			tracking_edge=EDGE_CENTER
+			forward_distance=.1
+			turn_angle=TURN_LEFT
+		elif (return_step == 10):
+			tracking_edge=EDGE_CENTER
+			forward_distance=.6
+			turn_angle=TURN_LEFT
+		elif (return_step == 11):
+			tracking_edge=EDGE_CENTER
+			forward_distance=.1
+			turn_angle=ROTATE
+	elif (step == FISH7):
+		if (return_step == 1):
+			tracking_edge=EDGE_CENTER
+			forward_distance=.1
+			turn_angle=TURN_RIGHT
+		elif (return_step == 2):
+			tracking_edge=EDGE_RIGHT
+			forward_distance=3
+			turn_angle=TURN_LEFT
+		elif (return_step == 3):
+			tracking_edge=EDGE_CENTER
+			forward_distance=.4
+			turn_angle=TURN_RIGHT
+		elif (return_step == 4):
+			tracking_edge=EDGE_CENTER
+			forward_distance=.4
+			drop_fish=True
+			turn_angle=ROTATE
+		elif (return_step == 5):
+			tracking_edge=EDGE_CENTER
+			forward_distance=.6
+			turn_angle=TURN_LEFT
+		elif (return_step == 6):
+			tracking_edge=EDGE_LEFT
+			forward_distance=.4
+			turn_angle=TURN_RIGHT
+		elif (return_step == 7):
+			tracking_edge=EDGE_LEFT
+			forward_distance=2
+			turn_angle=STRAIGHT
+		elif (return_step == 8):
+			tracking_edge=EDGE_CENTER
+			forward_distance=.5
+			turn_angle=TURN_LEFT
+		elif (return_step == 9):
+			tracking_edge=EDGE_CENTER
+			forward_distance=.1
+			turn_angle=ROTATE
+	elif (step == FISH8):
+		if (return_step == 1):
+			tracking_edge=EDGE_CENTER
+			forward_distance=.1
+			turn_angle=TURN_LEFT
+		elif (return_step == 2):
+			tracking_edge=EDGE_LEFT
+			forward_distance=1
+			turn_angle=TURN_RIGHT
+		elif (return_step == 3):
+			tracking_edge=EDGE_LEFT
+			forward_distance=2
+			turn_angle=STRAIGHT
+		elif (return_step == 4):
+			tracking_edge=EDGE_CENTER
+			forward_distance=.5
+			turn_angle=TURN_LEFT
+		elif (return_step == 5):
 			tracking_edge=EDGE_CENTER
 			forward_distance=.3
-			drop_fish=0
+			drop_fish=True
+			turn_angle=ROTATE
+		elif (return_step == 6):
+			tracking_edge=EDGE_CENTER
+			forward_distance=.3
+			turn_angle=TURN_RIGHT
+		elif (return_step == 7):
+			tracking_edge=EDGE_RIGHT
+			forward_distance=3
+			turn_angle=TURN_LEFT
+		elif (return_step == 8):
+			tracking_edge=EDGE_RIGHT
+			forward_distance=.4
+			turn_angle=TURN_RIGHT
+		elif (return_step == 9):
+			tracking_edge=EDGE_CENTER
+			forward_distance=.1
+			turn_angle=ROTATE
+	elif (step == FISH9):
+		if (return_step == 1):
+			tracking_edge=EDGE_CENTER
+			forward_distance=.3
+			turn_angle=TURN_RIGHT
+		elif (return_step == 2):
+			tracking_edge=EDGE_RIGHT
+			forward_distance=5
+			turn_angle=TURN_LEFT
+		elif (return_step == 3):
+			tracking_edge=EDGE_CENTER
+			forward_distance=.4
+			turn_angle=TURN_RIGHT
+		elif (return_step == 4):
+			tracking_edge=EDGE_CENTER
+			forward_distance=.4
+			drop_fish=True
+			turn_angle=ROTATE
+		elif (return_step == 5):
+			tracking_edge=EDGE_CENTER
+			forward_distance=.6
+			turn_angle=TURN_LEFT
+		elif (return_step == 6):
+			tracking_edge=EDGE_LEFT
+			forward_distance=.4
+			turn_angle=TURN_RIGHT
+		elif (return_step == 7):
+			tracking_edge=EDGE_LEFT
+			forward_distance=5
+			turn_angle=TURN_LEFT
+		elif (return_step == 8):
+			tracking_edge=EDGE_CENTER
+			forward_distance=.3
+			turn_angle=ROTATE
+	elif (step == FISH10):
+		if (return_step == 1):
+			tracking_edge=EDGE_CENTER
+			forward_distance=.3
+			turn_angle=TURN_RIGHT
+		elif (return_step == 2):
+			tracking_edge=EDGE_RIGHT
+			forward_distance=1
+			turn_angle=TURN_RIGHT
+		elif (return_step == 3):
+			tracking_edge=EDGE_RIGHT
+			forward_distance=6
+			turn_angle=TURN_LEFT
+		elif (return_step == 4):
+			tracking_edge=EDGE_CENTER
+			forward_distance=.4
+			turn_angle=TURN_RIGHT
+		elif (return_step == 5):
+			tracking_edge=EDGE_CENTER
+			forward_distance=.4
+			drop_fish=True
+			turn_angle=ROTATE
+		elif (return_step == 6):
+			tracking_edge=EDGE_CENTER
+			forward_distance=.6
+			turn_angle=TURN_LEFT
+		elif (return_step == 7):
+			tracking_edge=EDGE_CENTER
+			forward_distance=.4
+			turn_angle=TURN_RIGHT
+		elif (return_step == 8):
+			tracking_edge=EDGE_LEFT
+			forward_distance=6
+			turn_angle=TURN_LEFT
+		elif (return_step == 10):
+			tracking_edge=EDGE_LEFT
+			forward_distance=1
+			turn_angle=TURN_LEFT
+		elif (return_step == 11):
+			tracking_edge=EDGE_CENTER
+			forward_distance=.3
+			turn_angle=ROTATE
+	elif (step == FISH11):
+		if (return_step == 1):
+			tracking_edge=EDGE_CENTER
+			forward_distance=.3
+			turn_angle=TURN_LEFT
+		elif (return_step == 2):
+			tracking_edge=EDGE_LEFT
+			forward_distance=5
+			turn_angle=TURN_RIGHT
+		elif (return_step == 3):
+			tracking_edge=EDGE_CENTER
+			forward_distance=.4
+			turn_angle=TURN_LEFT
+		elif (return_step == 4):
+			tracking_edge=EDGE_CENTER
+			forward_distance=.3
+			drop_fish=True
+			turn_angle=ROTATE
+		elif (return_step == 5):
+			tracking_edge=EDGE_CENTER
+			forward_distance=.4
+			turn_angle=TURN_RIGHT
+		elif (return_step == 6):
+			tracking_edge=EDGE_RIGHT
+			forward_distance=1
+			turn_angle=TURN_LEFT
+		elif (return_step == 7):
+			tracking_edge=EDGE_RIGHT
+			forward_distance=5
+			turn_angle=TURN_RIGHT
+		elif (return_step == 8):
+			tracking_edge=EDGE_CENTER
+			forward_distance=.3
+			turn_angle=ROTATE
+	elif (step == FISH12):
+		if (return_step == 1):
+			tracking_edge=EDGE_CENTER
+			forward_distance=.3
+			turn_angle=TURN_RIGHT
+		elif (return_step == 2):
+			tracking_edge=EDGE_RIGHT
+			forward_distance=1
+			turn_angle=TURN_LEFT
+		elif (return_step == 3):
+			tracking_edge=EDGE_RIGHT
+			forward_distance=4
+			turn_angle=STRAIGHT
+		elif (return_step == 4):
+			tracking_edge=EDGE_CENTER
+			forward_distance=.5
+			turn_angle=TURN_RIGHT
+		elif (return_step == 5):
+			tracking_edge=EDGE_CENTER
+			forward_distance=.3
+			drop_fish=True
+			turn_angle=ROTATE
+		elif (return_step == 6):
+			tracking_edge=EDGE_CENTER
+			forward_distance=.3
+			turn_angle=TURN_LEFT
+		elif (return_step == 7):
+			tracking_edge=EDGE_LEFT
+			forward_distance=5
+			turn_angle=TURN_RIGHT
+		elif (return_step == 8):
+			tracking_edge=EDGE_LEFT
+			forward_distance=1
+			turn_angle=TURN_LEFT
+		elif (return_step == 9):
+			tracking_edge=EDGE_CENTER
+			forward_distance=.3
 			turn_angle=ROTATE
 
 	return [forward_distance, turn_angle, tracking_edge, drop_fish]
