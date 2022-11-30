@@ -69,16 +69,18 @@ def calibrate_sensors():
 	Navigation data in each Gizmoduck loop will handle changing the tracking edge
 '''
 def move_forward_by_blocks(number_of_blocks, tracking_edge, angle_rotation, start_inside):
-	#CONTINUE FORWARD UNTIL LIGHT SENSORS AGREE THAT THE CORRECT NUMBER OF BLOCKS HAVE PASSED. DATA LOG THE MOTORS MOVEMENT VALUE TO CROSS CHECK
 	tracking_sensor = DuckEyes.get_tracking_sensor(tracking_edge)
 	counting_sensor = DuckEyes.get_counting_sensor(tracking_edge)
 	midpoint_tracking = DuckEyes.get_IR_midpoint(tracking_sensor)
 	swapped_tracking = DuckEyes.is_sensor_swapped(tracking_sensor, angle_rotation)
 	crossed_final = False
 	last_count_distance = 0
-	speed = STRAIGHT_SPEED
 	lines_crossed = 0
 	turn_rate = 0
+	if(number_of_blocks>2):
+		speed = STRAIGHT_SPEED
+	else:
+		speed = STRAIGHT_SPEED*0.7
 	#if the previous turn was an outside turn, start in motion 
 	if(not start_inside):
 		driver.drive(speed,0)
@@ -107,6 +109,18 @@ def move_forward_by_blocks(number_of_blocks, tracking_edge, angle_rotation, star
 	driver.stop()
 	return (crossed_final and not swapped_tracking) or (not crossed_final and swapped_tracking)
 
+'''
+	input distance_blocks represents the distance to move in "blocks" but may not be a whole number
+	returns False as this function is only called during manual movement and does not need any line based compensation
+'''
+def move_forward_unchecked(distance_blocks):
+	driver.straight(convert_blocks_to_MM(distance_blocks))
+	return False
+'''
+	input angle_rotation specifies the number of degrees to rotate.
+	a positive value rotates clockwise and a negative value rotates counter-clockwise
+	there is currently no confirmation or compensation for this function outside of the next line follow operation.
+'''
 def rotate_degrees(angle_rotation):
 	driver.turn(angle_rotation)
 
@@ -121,8 +135,8 @@ def is_turn_inside(tracking_edge, angle_rotation):
 	elif(tracking_edge*angle_rotation < 0):
 		return TRACKING_INSIDE
 	else:
-		return True
 		print('error logged in calculate_inside_outside function, returned ')
+		return True
 '''
 	input: angle_rotation, the absolute heading of the DriveBase object
 	function modifies either the X or Y coordinate in accordance with the input angle_rotation with the assumption that robot will generally align with one of four cardinal directions

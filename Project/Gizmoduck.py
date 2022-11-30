@@ -30,20 +30,34 @@ class Gizmoduck:
 		step=1
 		last_turn_condition = False
 		#if there is a fish to check, find a way to the dock and then run that in reverse to go back to where we wer ein the main process
-		while step<12:
+		while step<12:#change value to maximum number of steps in path
 			path = Navigation.get_path_by_ID(step)
 			print('step:', step, ' with distance :', path[Navigation.INDEX_DISTANCE], ' and rotation: ', path[Navigation.INDEX_ROTATION], ' and fish status:', path[Navigation.INDEX_FISH])
-			last_turn_condition = DuckDrive.move_forward_by_blocks(path[Navigation.INDEX_DISTANCE], path[Navigation.INDEX_TRACKING_EDGE], path[Navigation.INDEX_ROTATION], last_turn_condition)
+			if(path[Navigation.INDEX_TRACKING_EDGE == Navigation.EDGE_CENTER]):
+				last_turn_condition = DuckDrive.move_forward_unchecked(path[Navigation.INDEX_DISTANCE], path[Navigation.INDEX_ROTATION])
+			else:
+				last_turn_condition = DuckDrive.move_forward_by_blocks(path[Navigation.INDEX_DISTANCE], path[Navigation.INDEX_TRACKING_EDGE], path[Navigation.INDEX_ROTATION], last_turn_condition)
 			DuckDrive.rotate_degrees(path[Navigation.INDEX_ROTATION])
 			if(path[Navigation.INDEX_FISH]>0):
-				print('there is a fish to catch')
-				#check if the fish is valid
-					#execute nested loop for return and stuff
-						#if value states to grab the fish
-							# grab the fish
+				if(True): #if fish is valid
+					# grab the fish
+					print('there is a fish to catch')
+					return_step = 1
+					return_turn_condition= False
+					while return_step<12:#change value to maximum number of steps that can exist in a return path
+						return_path = Navigation.get_return_path_by_fishID(step, return_step)
+						if(return_path == None): #might not work lol
+							break
 						#if value states to drop the fish
 							# drop the fish
-					#exit the subroutine
+						print('step:', return_step, ' with distance :', return_path[Navigation.INDEX_DISTANCE], ' and rotation: ', return_path[Navigation.INDEX_ROTATION], ' and fish status:', return_path[Navigation.INDEX_FISH])
+						if(path[Navigation.INDEX_TRACKING_EDGE == Navigation.EDGE_CENTER]):
+							last_turn_condition = DuckDrive.move_forward_unchecked(return_path[Navigation.INDEX_DISTANCE], return_path[Navigation.INDEX_ROTATION])
+						else:
+							last_turn_condition = DuckDrive.move_forward_by_blocks(return_path[Navigation.INDEX_DISTANCE], return_path[Navigation.INDEX_TRACKING_EDGE], return_path[Navigation.INDEX_ROTATION], return_turn_condition)
+						DuckDrive.rotate_degrees(return_path[Navigation.INDEX_ROTATION])
+				#if fish is invalid, exit and continue with main route
+			#if there is no fish to check exit and continue with main route
 			step+=1
 
 		
