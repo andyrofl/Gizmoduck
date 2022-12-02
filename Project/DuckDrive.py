@@ -14,7 +14,7 @@ import DuckEyes
 BLOCKS_TO_MM = 300.2 #25.4MM * 13 INCHES
 TRACKING_OUTSIDE = False
 TRACKING_INSIDE = True
-BUMP_DISTANCE = 0.4
+BUMP_DISTANCE = 0.5
 
 #TUNEABLES
 WHEEL_DIAMETER = 41 #42.86
@@ -75,37 +75,47 @@ def move_forward_by_blocks(number_of_blocks, tracking_edge, angle_rotation, star
 	swapped_tracking = DuckEyes.is_sensor_swapped(tracking_sensor, angle_rotation)
 	crossed_final = False
 	last_count_distance = 0
+	is_about_to_exit = False
 	lines_crossed = 0
 	turn_rate = 0
-	if(number_of_blocks>2):
-		speed = STRAIGHT_SPEED
-	else:
-		speed = STRAIGHT_SPEED*0.7
 	#if the previous turn was an outside turn, start in motion 
 	if(not start_inside):
-		driver.drive(speed,0)
+		print('bump')
+		driver.drive(STRAIGHT_SPEED,0)
 		wait(600)
 	print('midpoint: ', midpoint_tracking, 'and lines: ', number_of_blocks)
-	while lines_crossed < number_of_blocks:
-		driver.drive(speed, turn_rate)
+	exit_condition = False
+	while not exit_condition :
+		driver.drive(STRAIGHT_SPEED, turn_rate)
+		turn_rate =0
 		#line counting and halting logic
+		if(is_about_to_exit):
+			if(driver.distance() > last_count_distance + convert_blocks_to_MM(BUMP_DISTANCE)):
+				print('entered possible break point: ',driver.distance(), last_count_distance)
+				print('break')
+				#driver.straight(convert_blocks_to_MM(BUMP_DISTANCE))
+				exit_condition = True
 		if(counting_sensor.reflection() < 20):
 			if(driver.distance() > (last_count_distance + 100)):
 				last_count_distance = driver.distance()
 				lines_crossed+=1
-				increment_coordinates(driver.angle())
-				if(lines_crossed == number_of_blocks):
+				print('crossed a line')
+				#increment_coordinates(driver.angle())
+				if(lines_crossed >= number_of_blocks):
 					crossed_final = True
-					driver.straight(convert_blocks_to_MM(BUMP_DISTANCE))
-					break
+					is_about_to_exit = True
+					#here
+					print('is about to exit and crossed final')
 				elif(lines_crossed == (number_of_blocks-1)):
 					if(is_turn_inside(tracking_edge, angle_rotation)): #if the inside_outside returned false just cut the last block short
-						driver.straight(convert_blocks_to_MM(BUMP_DISTANCE))
-						break
+						is_about_to_exit = True
+						print('is about to exit')
 		else:#turn rate logic
 			turn_rate = ((tracking_sensor.reflection() - midpoint_tracking)*TURN_MULTIPLIER*tracking_edge)
 			if(lines_crossed == 0 and (turn_rate*tracking_edge)>TURN_SPEED_LIMIT):
 				turn_rate =(turn_rate/abs(turn_rate))*TURN_SPEED_LIMIT #if the turn rate towards the target in the first block is too sharp, limit it. turns awy from the line are uncapped.
+		#if(lines_crossed < number_of_blocks):
+
 	driver.stop()
 	return (crossed_final and not swapped_tracking) or (not crossed_final and swapped_tracking)
 
@@ -165,13 +175,13 @@ def increment_coordinates(angle_rotation):
 '''
 	sets the global x coordinate
 '''
-def set_x_coordinate(x_initial):
-	global x_coordinate
-	x_coordinate = x_initial
-
+#def set_x_coordinate(x_initial):
+#global x_coordinate
+#	x_coordinate = x_initial
+#
 '''
 	sets the global y coordinate
 '''
-def set_y_coordinate(y_initial):
-	global y_coordinate
-	y_coordinate = y_initial
+#def set_y_coordinate(y_initial):
+#	global y_coordinate
+#	y_coordinate = y_initial

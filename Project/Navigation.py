@@ -1,5 +1,6 @@
 #!/usr/bin/env pybricks-micropython
 
+
 #CONSTANTS
 INDEX_DISTANCE = 0
 INDEX_ROTATION = 1
@@ -319,7 +320,7 @@ def get_path_by_ID(step):
 		forward_distance=.3
 		check_fish=True
 		turn_angle=ROTATE
-	return [tracking_edge, forward_distance, check_fish, turn_angle]
+	return [forward_distance, turn_angle, tracking_edge, check_fish]
 
 
 '''
