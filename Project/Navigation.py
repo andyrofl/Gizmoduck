@@ -15,6 +15,9 @@ TURN_LEFT = -90
 STRAIGHT = 0
 ROTATE = 180
 
+
+#Unused constants for second set of instructions
+'''
 FISH1 = 8
 FISH2 = 13
 FISH3 = 17
@@ -27,10 +30,76 @@ FISH9 = 41
 FISH10 = 45
 FISH11 = 49
 FISH12 = 53
-
 '''
-Original Navigation Instructions:
 
+def get_path_by_ID(step):
+	forward_distance=0	#number of blocks to move forward
+	turn_angle=0		#Degrees to turn from the direction robot is facing (0 is forward)
+	tracking_edge=0		#The edge of the robot that will track the line. 1 is right, -1 is left, and 0 goes off grid.
+	check_fish=False	#A true value indicates this step will be circling a lake
+	drop_fish=False		#A true value indicates that the fish should be released after moving the specified distance
+	
+	if (step == 1):
+		tracking_edge=EDGE_RIGHT
+		forward_distance=5
+		turn_angle=STRAIGHT
+	elif (step == 2):
+		tracking_edge=EDGE_CENTER
+		forward_distance=.8
+		turn_angle=TURN_RIGHT
+	elif (step == 3):
+		tracking_edge=EDGE_CENTER
+		forward_distance=.8
+		turn_angle=STRAIGHT
+	elif (step == 4):
+		tracking_edge=EDGE_RIGHT
+		forward_distance=6
+		turn_angle=STRAIGHT
+		check_fish=True
+	elif (step == 5):
+		tracking_edge=EDGE_LEFT
+		forward_distance=1
+		turn_angle=TURN_RIGHT
+	elif (step == 6):
+		tracking_edge=EDGE_RIGHT
+		forward_distance=8
+		turn_angle=ROTATE
+		drop_fish=True
+	elif (step == 7):
+		tracking_edge=EDGE_LEFT
+		forward_distance=2
+		turn_angle=TURN_LEFT
+	elif (step == 8):
+		tracking_edge=EDGE_RIGHT
+		forward_distance=8
+		turn_angle=STRAIGHT
+		check_fish=True
+	elif (step == 9):
+		tracking_edge=EDGE_RIGHT
+		forward_distance=2
+		turn_angle=TURN_LEFT
+	elif (step == 10):
+		tracking_edge=EDGE_RIGHT
+		forward_distance=1
+		turn_angle=TURN_LEFT
+	elif (step == 11):
+		tracking_edge=EDGE_RIGHT
+		forward_distance=1
+		turn_angle=STRAIGHT
+	elif (step == 12):
+		tracking_edge=EDGE_RIGHT
+		forward_distance=8
+		turn_angle=STRAIGHT
+		check_fish=True
+	elif (step == 13):
+		tracking_edge=EDGE_CENTER
+		forward_distance=1
+		turn_angle=STRAIGHT
+		drop_fish=True
+	return [forward_distance, turn_angle, tracking_edge, check_fish, drop_fish]
+
+#Original Navigation Instructions:
+'''
 def get_path_by_ID(step):
 	forward_distance=0	#number of blocks to move forward
 	turn_angle=0		#Degrees to turn from the direction robot is facing (0 is forward)
@@ -83,8 +152,8 @@ def get_path_by_ID(step):
 
 	return [forward_distance, turn_angle, tracking_edge, check_fish]
 '''
-#The instructions in each step have been reordered, and are meant to be carried out in the order listed
-
+#Second set of instructions
+'''
 def get_path_by_ID(step):
 	forward_distance=0	#number of blocks to move forward
 	turn_angle=0		#Degrees to turn from the direction robot is facing (0 is forward)
@@ -322,10 +391,6 @@ def get_path_by_ID(step):
 	return [tracking_edge, forward_distance, check_fish, turn_angle]
 
 
-'''
-	function returns a set of instructions to navigate from the current point to the dock and back
-	IDs are not the same as the previous function and are specific to the location of each fish
-'''
 def get_return_path_by_fishID(step, return_step):
 	forward_distance=0	#number of blocks to move forward
 	turn_angle=0		#Degrees to turn from the direction robot is facing (0 is forward)
@@ -765,3 +830,4 @@ def get_return_path_by_fishID(step, return_step):
 			turn_angle=ROTATE
 
 	return [forward_distance, turn_angle, tracking_edge, drop_fish]
+'''
