@@ -26,7 +26,6 @@ class Gizmoduck:
 	def run_expedition(self):
 		step=1
 		last_turn_condition = False
-		#if there is a fish to check, find a way to the dock and then run that in reverse to go back to where we wer ein the main process
 		while step<53:#change value to maximum number of steps in path
 			path = Navigation.get_path_by_ID(step)
 			print('step:', step, ' with distance :', path[Navigation.INDEX_DISTANCE], ' and rotation: ', path[Navigation.INDEX_ROTATION], ' and fish status:', path[Navigation.INDEX_FISH])
@@ -34,7 +33,7 @@ class Gizmoduck:
 				print('entered unchecked function ', path[Navigation.INDEX_DISTANCE], step)
 				last_turn_condition = DuckDrive.move_forward_unchecked(path[Navigation.INDEX_DISTANCE])#, path[Navigation.INDEX_ROTATION])
 			else:
-				last_turn_condition = DuckDrive.move_forward_by_blocks(path[Navigation.INDEX_DISTANCE], path[Navigation.INDEX_TRACKING_EDGE], path[Navigation.INDEX_ROTATION], last_turn_condition)
+				last_turn_condition = DuckDrive.move_forward_by_blocks(path[Navigation.INDEX_DISTANCE], path[Navigation.INDEX_TRACKING_EDGE], path[Navigation.INDEX_ROTATION], last_turn_condition, path[Navigation.INDEX_FISH])
 			DuckDrive.rotate_degrees(path[Navigation.INDEX_ROTATION])
 			'''if(path[Navigation.INDEX_FISH]>0):
 				if(True): #if fish is valid

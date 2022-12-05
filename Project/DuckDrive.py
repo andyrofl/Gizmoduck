@@ -14,7 +14,6 @@ import DuckEyes
 BLOCKS_TO_MM = 300.2 #25.4MM * 13 INCHES
 TRACKING_OUTSIDE = False
 TRACKING_INSIDE = True
-BUMP_DISTANCE = 0.5
 
 #TUNEABLES
 WHEEL_DIAMETER = 41 #42.86
@@ -25,6 +24,8 @@ TURN_RATE = 100
 TURN_ACCELERATION = 25
 TURN_MULTIPLIER = 1.2
 TURN_SPEED_LIMIT = 9
+BUMP_DISTANCE = 0.5
+TURN_LAKE_LIMITER = -8
 
 #variables and objects --initialization
 brick = EV3Brick()
@@ -68,7 +69,7 @@ def calibrate_sensors():
 	function moves robot forward a specified number of "blocks" accounting for the need to come up a little short if we are making an interior turn.
 	Navigation data in each Gizmoduck loop will handle changing the tracking edge
 '''
-def move_forward_by_blocks(number_of_blocks, tracking_edge, angle_rotation, start_inside):
+def move_forward_by_blocks(number_of_blocks, tracking_edge, angle_rotation, start_inside, tracking_lake):
 	tracking_sensor = DuckEyes.get_tracking_sensor(tracking_edge)
 	counting_sensor = DuckEyes.get_counting_sensor(tracking_edge)
 	midpoint_tracking = DuckEyes.get_IR_midpoint(tracking_sensor)
@@ -114,6 +115,8 @@ def move_forward_by_blocks(number_of_blocks, tracking_edge, angle_rotation, star
 			turn_rate = ((tracking_sensor.reflection() - midpoint_tracking)*TURN_MULTIPLIER*tracking_edge)
 			if(lines_crossed == 0 and (turn_rate*tracking_edge)>TURN_SPEED_LIMIT):
 				turn_rate =(turn_rate/abs(turn_rate))*TURN_SPEED_LIMIT #if the turn rate towards the target in the first block is too sharp, limit it. turns awy from the line are uncapped.
+			if(tracking_lake and turn_rate<TURN_LAKE_LIMITER):
+				turn_rate = TURN_LAKE_LIMITER #if the turn rate is a value of lower than the limiter (a negative number for turning away) limit the turn rate
 		#if(lines_crossed < number_of_blocks):
 
 	driver.stop()

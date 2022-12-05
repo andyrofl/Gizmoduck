@@ -91,7 +91,7 @@ def get_path_by_ID(step):
 	turn_angle=0		#Degrees to turn from the direction robot is facing (0 is forward)
 	tracking_edge=0		#The edge of the robot that will track the line. 1 is right, -1 is left, and 0 goes off grid.
 	check_fish=False		#1=check fish, 0=do nothing
-	
+	#check fish will likely indicate whether or not we are now tracking along a lake
 	if (step == 1):
 		tracking_edge=EDGE_RIGHT
 		forward_distance=6
@@ -320,6 +320,7 @@ def get_path_by_ID(step):
 		forward_distance=.3
 		check_fish=True
 		turn_angle=ROTATE
+	#INDEX_DISTANCE = 0, INDEX_ROTATION = 1, INDEX_TRACKING_EDGE = 2, INDEX_FISH = 3
 	return [forward_distance, turn_angle, tracking_edge, check_fish]
 
 
