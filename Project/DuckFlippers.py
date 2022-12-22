@@ -1,5 +1,7 @@
 #!/usr/bin/env pybricks-micropython
 import Navigation
+from pybricks.ev3devices import Motor
+from pybricks.parameters import Port, Stop
 
 '''
 this script contains functions and data relating the the operation of the grabbing mechanism for Gizmoduck
@@ -16,7 +18,7 @@ bucket = Motor(Port.C)
 	precondition: there is not a fish currently being held
 '''
 def grab_fish(check_fish):
-	if(check_fish=True):
+	if(check_fish==True):
 		bucket.run_target(BUCKET_SPEED, RAISED_ANGLE, then=Stop.HOLD, wait=True)
 		print('bucket raised')
 	return
@@ -26,7 +28,7 @@ def grab_fish(check_fish):
 	preconditon: there is a fish currently held
 '''
 def release_fish(drop_fish):
-	if(drop_fish=True):
+	if(drop_fish==True):
 		bucket.run_target(BUCKET_SPEED, LOWERED_ANGLE, then=Stop.HOLD, wait=True)
 		print('bucket lowered')
 	return
